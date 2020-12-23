@@ -8,8 +8,18 @@ class FlatList extends Component {
   }
 
   renderList = () => {
-    return this.props.flats.map((flat) => {
-      return <Flat name={flat.name} key={flat.name} url={flat.imageUrl} price={flat.price} currency={flat.priceCurrency} />;
+    return this.props.flats.map((flat, index) => {
+      return (
+        <Flat
+          name={flat.name}
+          key={flat.name}
+          url={flat.imageUrl}
+          price={flat.price}
+          currency={flat.priceCurrency}
+          index={index}
+          changeSelectedFlat={this.props.changeSelectedFlat}
+        />
+      );
     });
   }
 

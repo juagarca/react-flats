@@ -7,14 +7,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      flatList: flats
+      flatList: flats,
+      selectedFlat: null
     };
   }
 
+  changeSelectedFlat = (index) => {
+    this.setState({
+      selectedFlat: this.state.flatList[index]
+    });
+  }
+
   render() {
+    console.log(this.state.selectedFlat);
     return (
       <div>
-        <FlatList flats={this.state.flatList} />
+        <FlatList flats={this.state.flatList} changeSelectedFlat={this.changeSelectedFlat} />
         <div className="map-container">
           <SimpleMap />
         </div>
