@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import SimpleMap from './simple_map';
+import GoogleMapReact from 'google-map-react';
 import FlatList from './flat_list';
 import flats from '../../data/flats';
+import Marker from './marker';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       flatList: flats,
-      selectedFlat: ''
+      selectedFlat: flats[0]
     };
   }
 
@@ -18,13 +19,22 @@ class App extends Component {
     });
   }
 
+  defaultCenter = () => {
+    return {
+      lat: this.state.selectedFlat.lat,
+      lng: this.state.selectedFlat.lng
+    };
+  }
+
   render() {
-    console.log(this.state.selectedFlat);
+    // console.log(this.defaultCenter);
     return (
       <div>
         <FlatList flats={this.state.flatList} selectedFlat={this.state.selectedFlat} changeSelectedFlat={this.changeSelectedFlat} />
         <div className="map-container">
-          <SimpleMap />
+          <GoogleMapReact center={this.defaultCenter()} defaultZoom={12}>
+            <Marker lat={this.state.selectedFlat.lat} lng={this.state.selectedFlat.lng}></Marker>
+          </GoogleMapReact>
         </div>
       </div>
     );
