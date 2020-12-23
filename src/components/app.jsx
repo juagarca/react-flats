@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       flatList: flats,
-      selectedFlat: null
+      selectedFlat: ''
     };
   }
 
@@ -22,7 +22,7 @@ class App extends Component {
     console.log(this.state.selectedFlat);
     return (
       <div>
-        <FlatList flats={this.state.flatList} changeSelectedFlat={this.changeSelectedFlat} />
+        <FlatList flats={this.state.flatList} selectedFlat={this.state.selectedFlat} changeSelectedFlat={this.changeSelectedFlat} />
         <div className="map-container">
           <SimpleMap />
         </div>

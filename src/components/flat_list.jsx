@@ -3,10 +3,6 @@ import Flat from './flat';
 
 
 class FlatList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderList = () => {
     return this.props.flats.map((flat, index) => {
       return (
@@ -17,6 +13,7 @@ class FlatList extends Component {
           price={flat.price}
           currency={flat.priceCurrency}
           index={index}
+          active={this.props.selectedFlat.name === flat.name}
           changeSelectedFlat={this.props.changeSelectedFlat}
         />
       );
